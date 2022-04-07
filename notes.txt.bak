@@ -1,0 +1,27 @@
+Master --> 13.59.129.99
+Node1-> 18.219.5.18
+Node2-> 18.222.111.26
+
+
+****************************This is not working  not joing the nodes1 some blocking issues
+
+sudo vi /etc/docker/daemon.json
+{
+  "exec-opts": ["native.cgroupdriver=systemd"]
+}
+
+systemctl restart docker
+
+Error on Nodes
+root@node1:~# sudo kubeadm join 10.16.10.228:6443 --token rndc0m.5msygyjmc6a65hpx --discovery-token-ca-cert-hash sha256:89a704eb21e0542f864c6dc4f61f944a83e90fd1db477e46faefdeadb61451a8
+[preflight] Running pre-flight checks
+        [WARNING IsDockerSystemdCheck]: detected "cgroupfs" as the Docker cgroup driver. The recommended driver is "systemd". Please follow the guide at https://kubernetes.io/docs/setup/cri/
+error execution phase preflight: couldn't validate the identity of the API Server: Get "https://10.16.10.228:6443/api/v1/namespaces/kube-public/configmaps/cluster-info?timeout=10s": net/http: request canceled while waiting for connection (Client.Timeout exceeded while awaiting headers)
+To see the stack trace of this error execute with --v=5 or higher
+root@node1:~#
+
+Fix details:-
+https://kubernetes.io/docs/setup/production-environment/container-runtimes/
+
+************************************
+

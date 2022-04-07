@@ -2,9 +2,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: proxy-nginx
+  name: proxy-mongodb
   labels:
-    app: nginx
+    app: mongodb
     tier: proxy
 spec:
   # if your cluster supports it, uncomment the following to automatically create
@@ -18,5 +18,5 @@ spec:
     port: 443
     protocol: TCP
   selector:
-    app: nginx
-    tier: proxy-nginx
+    app: mongodb
+    tier: proxy-mongodb

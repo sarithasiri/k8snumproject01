@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-apachelivy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+        app: apachelivy
+        tier: backend
+  template:
+    metadata:
+      labels:
+        app: apachelivy
+        tier: backend
+    spec:
+      containers:
+      - name: backend-apachelivy
+        image: 11223456786/numtra_platform_2.0:numtrabackend_2.0
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        - containerPort: 8998 
+#        resources:
+#          requests:
+#            cpu: 100m
+#            memory: 100Mi
+      imagePullSecrets:
+      - name: regcred

@@ -1,0 +1,38 @@
+# SOURCE: https://cloud.google.com/kubernetes-engine/docs/tutorials/guestbook
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-passapi
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+        app: passapi
+        tier: frontend
+  template:
+    metadata:
+      labels:
+        app: passapi
+        tier: frontend
+    spec:
+      containers:
+      - name: frontend-passapi
+        image: 11223456786/numtra_platform_2.0:numtrafrontend_2.0
+        imagePullPolicy: Always
+#        resources:
+#          requests:
+#            cpu: 100m
+#            memory: 100Mi
+         ports:
+        - containerPort: 4040  
+        - containerPort: 7000 
+        - containerPort: 65000  
+        - containerPort: 27017
+        - containerPort: 3200
+        - containerPort: 2000 
+#        resources:
+#          requests:
+#            cpu: 100m
+#            memory: 100Mi
+      imagePullSecrets:
+      - name: regcred

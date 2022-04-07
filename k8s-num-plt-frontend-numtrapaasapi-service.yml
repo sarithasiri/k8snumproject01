@@ -1,0 +1,30 @@
+# SOURCE: https://cloud.google.com/kubernetes-engine/docs/tutorials/guestbook
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-passapi
+  labels:
+    app: passapi
+    tier: frontend
+spec:
+  # if your cluster supports it, uncomment the following to automatically create
+  # an external load-balanced IP for the frontend service.
+  # type: LoadBalancer
+  type: NodePort
+  ports:
+    # the port that this service should serve on
+  - port: 4040  
+    protocol: TCP
+  - port: 7000 
+    protocol: TCP
+  - port: 65000    
+    protocol: TCP
+  - port: 27017  
+    protocol: TCP
+  - port: 3200   
+    protocol: TCP
+    - port: 2000    
+    protocol: TCP
+  selector:
+    app: passapi
+    tier: frontend-passapi
